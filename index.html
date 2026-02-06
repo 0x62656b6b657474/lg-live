@@ -378,7 +378,13 @@ body.no-scroll {
 }
 
       .address-text {
-    font-size: 0.6rem !important;  /* ADD THIS */
+    font-size: 0.6rem !important;  
+  }
+
+      body.no-scroll {                   
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
   }
       
 .bio-panel {
@@ -387,6 +393,7 @@ body.no-scroll {
   align-items: flex-start !important;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+   touch-action: pan-y;             
 }
 
 .bio-content {
