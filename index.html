@@ -359,7 +359,7 @@ body.no-scroll {
     }
 
     @media (max-width: 900px) and (orientation: landscape) {
-      .building {
+     .building {
         transform: scale(0.7);
         transform-origin: bottom;
       }
@@ -376,23 +376,37 @@ body.no-scroll {
       }
 
       .bio-panel {
-        padding: 1rem 2rem;
+        padding: 1rem 2rem 2rem 2rem;
         justify-content: flex-start;
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
       }
 
       .bio-content {
-        margin-top: 6rem;
+        margin-top: 4rem;
+        padding-bottom: 2rem;
       }
 
       .bio-panel h2 {
         margin-top: 0;
+        font-size: 1.75rem;
+      }
+
+      .bio-panel h3 {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      .bio-panel p {
+        font-size: 0.9rem;
+        line-height: 1.65;
+        margin-bottom: 1rem;
       }
 
       .close-btn {
-        top: 1rem;
+        top: 0.75rem;
+        right: 1.5rem;
       }
-    }
 
     @keyframes fadeIn {
       from {
