@@ -183,7 +183,7 @@ body.no-scroll {
   z-index: 1;
   font-family: 'Fraunces', serif;
   font-size: clamp(2rem, 4.5vw, 5rem);
-  max-width: 1100px; /* ADD THIS LINE */
+  max-width: 1100px;
   line-height: 1.25;
   text-align: left;
   margin-left: 0;
@@ -339,18 +339,65 @@ body.no-scroll {
       opacity: 0 !important;
     }
 
+    /* Director text styling - FIXED positioning like cityscape */
+    .director-text {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      padding: 1rem;
+      text-align: left;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      opacity: 0;
+      z-index: 1000;
+      pointer-events: all;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      animation: fadeInDirector 1s ease-in 2.3s forwards;
+    }
+
+    @keyframes fadeInDirector {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 0.85;
+      }
+    }
+
+    .director-text:hover {
+      opacity: 1;
+    }
+
+    .director-text.hide {
+      opacity: 0 !important;
+      animation: none;
+    }
+
+    .director-link {
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      transition: border-bottom-color 0.2s ease;
+    }
+
+    .director-link:hover {
+      border-bottom-color: rgba(255,255,255,1);
+    }
+
   @media (max-width: 600px) {
   .lede-wrapper {
     padding: 0 1rem;
   }
 
   .lede {
-    font-size: clamp(1.2rem, 5vw, 1.5rem); /* Smaller but proportional */
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
     text-align: left;
-    max-width: 90%; /* Slightly wider to use available space */
+    max-width: 90%;
     margin: 0 auto;
     line-height: 1.3;
-    /* Keep the line breaks - they'll work at smaller size */
   }
 
   .building:nth-child(1),
@@ -368,11 +415,15 @@ body.no-scroll {
   .cityscape {
     padding: 0.5rem;
     gap: 0px;
-    bottom: 0.5rem;
   }
 
   div[style*="bottom: 1rem; left: 1rem"] {
     font-size: 0.65rem !important;
+  }
+
+  .director-text {
+    font-size: 0.65rem;
+    padding: 0.5rem;
   }
 }
   @media (max-width: 900px) and (orientation: landscape) {
@@ -396,7 +447,6 @@ body.no-scroll {
     padding: 0;
   }
 
-  /* FIX SECOND SECTION - full width */
   main {
     width: 100vw !important;
     padding: 0 !important;
@@ -404,7 +454,6 @@ body.no-scroll {
     min-height: 100vh;
   }
 
-  /* Make centered text responsive in landscape */
   .centered-text {
     font-size: clamp(3rem, 8vw, 5vw) !important;
   }
@@ -427,6 +476,11 @@ body.no-scroll {
 
   .address-text {
     font-size: 0.6rem !important;
+  }
+
+  .director-text {
+    font-size: 0.6rem;
+    padding: 0.75rem;
   }
 
   body.no-scroll {
@@ -701,13 +755,17 @@ body.no-scroll {
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <div class="lede-wrapper">
-<div class="lede">
-  Helping financial leaders turn<br>
-  complex change into <span class="highlight">measurable</span><br>
-  advantage.
-</div>
+    <div class="lede">
+      Helping financial leaders turn<br>
+      complex change into <span class="highlight">measurable</span><br>
+      advantage.
+    </div>
+  </div>
 
-
+  <!-- Director text - FIXED position, shows only on first section via JS -->
+  <div class="director-text" id="directorText">
+    <strong>Director</strong><br>
+    <a href="#" class="director-link" id="directorLink">Samantha du Sart</a>
   </div>
 
  <div class="cityscape" role="button" tabindex="0" aria-label="Open director bio panel">
@@ -739,22 +797,16 @@ body.no-scroll {
 <main id="main-content" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; width: 100%;">
   <h1 class="centered-text">Langthorne Gironde</h1>
   
+  <!-- Registered Office text - only in second section -->
   <div class="address-text" style="position: absolute; bottom: 1rem; left: 1rem; text-align: left; font-size: 0.85rem; line-height: 1.6; opacity: 0.85; z-index: 100;">
     <strong>Registered Office</strong><br>
     124 City Road ·
     London · EC1V 2NX · UK
     <p style="margin-top: 0rem; margin-bottom: 0;">
       <a href="/cdn-cgi/l/email-protection#b7ded9d1d8f7dbd6d9d0c3dfd8c5d9d2d0dec5d8d9d3d299d4d8da" style="color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.5);">
-        hi@langthornegironde.com
+        <span class="__cf_email__" data-cfemail="ea8283aa868b848d9e828598848f8d839885848e8fc4898587">[email&#160;protected]</span>
       </a>
     </p>
- <!--   <p style="margin-top: 1rem; font-size: 0.7rem; opacity: 0.6; margin-bottom: 0;">
-      Design by <a href="https://www.camalyn.org" style="color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.3);"><i>c</i>amalyn</a>
-
-
-
-    </p>-->
-    
    </div>
 </main>
 
@@ -788,7 +840,7 @@ body.no-scroll {
 </div> 
 
 
- <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+ <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const images = [
       'london.jpg'
     ];
@@ -829,6 +881,24 @@ body.no-scroll {
     const ledeText = document.querySelector('.lede');
     const centeredText = document.querySelector('.centered-text');
     const addressText = document.querySelector('.address-text');
+    const directorText = document.getElementById('directorText');
+    const directorLink = document.getElementById('directorLink');
+
+    // Hide director text when scrolling to second section
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      
+      // If we've scrolled more than 50% of viewport, hide director text
+      if (scrollTop > windowHeight * 0.5) {
+        directorText.style.display = 'none';
+      } else {
+        directorText.style.display = 'block';
+      }
+      
+      lastScrollTop = scrollTop;
+    });
 
     function openBioPanel() {
       bioPanel.classList.remove('closing');
@@ -837,6 +907,7 @@ body.no-scroll {
       if (ledeText) ledeText.classList.add('hide');
       if (centeredText) centeredText.classList.add('hide');
       if (addressText) addressText.classList.add('hide');
+      if (directorText) directorText.classList.add('hide');
       setTimeout(() => closeBtn.focus(), 100);
     }
 
@@ -847,12 +918,14 @@ body.no-scroll {
       if (ledeText) ledeText.classList.remove('hide');
       if (centeredText) centeredText.classList.remove('hide');
       if (addressText) addressText.classList.remove('hide');
+      if (directorText) directorText.classList.remove('hide');
       setTimeout(() => {
         bioPanel.classList.remove('closing');
         cityscape.focus();
       }, 400);
     }
 
+    // Cityscape click handler
     cityscape.addEventListener('click', openBioPanel);
     
     // Keyboard support for cityscape
@@ -861,6 +934,12 @@ body.no-scroll {
         e.preventDefault();
         openBioPanel();
       }
+    });
+
+    // Director link click handler
+    directorLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      openBioPanel();
     });
 
     closeBtn.addEventListener('click', closeBioPanel);
