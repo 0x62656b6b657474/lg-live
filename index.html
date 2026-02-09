@@ -4,48 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Langthorne Gironde - Financial Change Transformation</title>
-
   <meta name="description" content="Helping financial leaders turn complex change into measurable advantage. Change transformation specialists for the global asset management industry.">
-
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-
   <!-- Apple Touch Icons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
   <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-touch-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-touch-icon-120x120.png">
   <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-touch-icon-76x76.png">
-
   <!-- Apple Mobile Web App -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Langthorne Gironde">
-
   <!-- Android/Chrome -->
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#ff4081">
   <meta name="mobile-web-app-capable" content="yes">
-
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://langthornegironde.com/">
   <meta property="og:title" content="Langthorne Gironde - Financial Change Transformation">
   <meta property="og:description" content="Helping financial leaders turn complex change into measurable advantage. Change transformation specialists for the global asset management industry.">
   <meta property="og:image" content="https://langthornegironde.com/og-image.png">
-
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://langthornegironde.com/">
   <meta property="twitter:title" content="Langthorne Gironde - Financial Change Transformation">
   <meta property="twitter:description" content="Helping financial leaders turn complex change into measurable advantage. Change transformation specialists for the global asset management industry.">
   <meta property="twitter:image" content="https://langthornegironde.com/twitter-image.png">
-
   <!-- WhatsApp -->
   <meta property="og:site_name" content="Langthorne Gironde">
   <meta property="og:locale" content="en_GB">
-
   <!-- Structured Data -->
   <script type="application/ld+json">
   {
@@ -64,12 +55,10 @@
     "url": "https://langthornegironde.com"
   }
   </script>
-
   <style>
     /* ============================================
        FONTS
        ============================================ */
-
     /* Custom font (Adelia) */
     @font-face {
       font-family: 'Adelia';
@@ -78,25 +67,19 @@
       font-weight: normal;
       font-style: normal;
     }
-
     /* Google Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap');
-
-
     /* ============================================
        ANIMATIONS & KEYFRAMES
        ============================================ */
-
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
-
     @keyframes fadeInDirector {
       from { opacity: 0; }
       to { opacity: 0.85; }
     }
-
     @keyframes slideIn {
       from {
         transform: translateX(100%);
@@ -107,7 +90,6 @@
         opacity: 1;
       }
     }
-
     @keyframes slideOut {
       from {
         transform: translateX(0);
@@ -118,12 +100,10 @@
         opacity: 0;
       }
     }
-
     @keyframes swishIn {
       0% { width: 0%; }
       100% { width: 100%; }
     }
-
     @keyframes gentlePulse {
       0%, 100% {
         transform: translateY(0) scale(1);
@@ -132,22 +112,17 @@
         transform: translateY(-3px) scale(1.02);
       }
     }
-
     @keyframes pinkSweep {
       0% { background-position: -200% 0; }
       100% { background-position: 200% 0; }
     }
-
-
     /* ============================================
        BASE STYLES
        ============================================ */
-
     html {
       width: 100vw;
       overflow-x: hidden;
     }
-
     body {
       margin: 0;
       padding: 0;
@@ -162,7 +137,6 @@
       position: relative;
       z-index: 0;
     }
-
     /* Background blur effect */
     body::before {
       content: "";
@@ -177,17 +151,13 @@
       mix-blend-mode: overlay;
       z-index: -1;
     }
-
     body.no-scroll {
       overflow: hidden;
       height: 100vh;
     }
-
-
     /* ============================================
        ACCESSIBILITY
        ============================================ */
-
     /* Skip to content link */
     .skip-link {
       position: absolute;
@@ -200,31 +170,24 @@
       text-decoration: none;
       z-index: 10000;
     }
-
     .skip-link:focus {
       top: 0;
     }
-
     /* Focus styles for keyboard navigation */
     *:focus-visible {
       outline: 3px solid rgba(255, 255, 255, 0.8);
       outline-offset: 2px;
     }
-
     a:focus-visible {
       outline: 2px solid rgba(255, 255, 255, 0.9);
       outline-offset: 3px;
     }
-
     *:focus:not(:focus-visible) {
       outline: none;
     }
-
-
     /* ============================================
        HERO SECTION (LEDE)
        ============================================ */
-
     .lede-wrapper {
       position: relative;
       display: flex;
@@ -240,7 +203,6 @@
       background-color: #FF4081;
       transition: background-image 1s ease-in-out;
     }
-
     .lede-wrapper::before {
       content: "";
       position: absolute;
@@ -248,7 +210,6 @@
       background: rgba(0, 0, 0, 0.4);
       z-index: 0;
     }
-
     .lede {
       position: relative;
       z-index: 1;
@@ -264,11 +225,9 @@
       animation: fadeIn 1.5s ease-in forwards;
       transition: opacity 0.4s ease;
     }
-
     .lede.hide {
       opacity: 0 !important;
     }
-
     /* Highlight effect */
     .highlight {
       position: relative;
@@ -276,7 +235,6 @@
       padding: 0.05em 0.25em;
       margin: 0 -0.1em;
     }
-
     .highlight::before {
       content: "";
       position: absolute;
@@ -296,12 +254,9 @@
       animation: swishIn 0.8s ease-out 1.5s forwards;
       z-index: -1;
     }
-
-
     /* ============================================
        CITYSCAPE ICON
        ============================================ */
-
     .cityscape {
       position: fixed;
       bottom: 0;
@@ -316,13 +271,11 @@
       cursor: pointer;
       animation: fadeIn 1.5s ease-in 1.5s forwards, gentlePulse 3s ease-in-out 4s infinite;
     }
-
     .cityscape:hover,
     .cityscape:focus-visible {
       animation: fadeIn 1.5s ease-in 1.5s forwards, gentlePulse 3s ease-in-out 4s infinite;
       transform: translateY(-6px);
     }
-
     .building {
       position: relative;
       display: flex;
@@ -335,7 +288,6 @@
       border-radius: 2px 2px 0 0;
       overflow: hidden;
     }
-
     .building::after {
       content: "";
       position: absolute;
@@ -353,25 +305,20 @@
       animation: pinkSweep 5s ease-in-out infinite;
       pointer-events: none;
     }
-
     .building:nth-child(1) { width: 20px; height: 60px; background-color: white; }
     .building:nth-child(2) { width: 15px; height: 40px; background-color: white; }
     .building:nth-child(3) { width: 25px; height: 80px; background-color: white; }
     .building:nth-child(4) { width: 10px; height: 30px; background-color: white; }
     .building:nth-child(5) { width: 18px; height: 50px; background-color: white; }
-
     .window {
       width: 6px;
       height: 6px;
       background-color: transparent;
       border-radius: 1px;
     }
-
-
     /* ============================================
        TEXT ELEMENTS
        ============================================ */
-
     .centered-text {
       font-family: 'Adelia', sans-serif;
       font-size: 5vw;
@@ -381,22 +328,18 @@
       opacity: 1;
       transition: opacity 0.4s ease;
     }
-
     .centered-text.hide {
       opacity: 0 !important;
     }
-
     .address-text {
       font-family: 'Inter', sans-serif;
       font-weight: 400;
       letter-spacing: -0.01em;
       transition: opacity 0.4s ease;
     }
-
     .address-text.hide {
       opacity: 0 !important;
     }
-
     .director-text {
       position: fixed;
       bottom: 0;
@@ -414,32 +357,25 @@
       cursor: pointer;
       animation: fadeInDirector 1s ease-in 2.3s forwards;
     }
-
     .director-text:hover {
       opacity: 1;
     }
-
     .director-text.hide {
       opacity: 0 !important;
       animation: none;
     }
-
     .director-link {
       color: white;
       text-decoration: none;
       border-bottom: 1px solid rgba(255, 255, 255, 0.5);
       transition: border-bottom-color 0.2s ease;
     }
-
     .director-link:hover {
       border-bottom-color: rgba(255, 255, 255, 1);
     }
-
-
     /* ============================================
        BIO PANEL
        ============================================ */
-
     .bio-panel {
       position: fixed;
       top: 0;
@@ -459,15 +395,12 @@
       transform: translateX(100%);
       opacity: 0;
     }
-
     .bio-panel.active {
       animation: slideIn 0.4s ease-out forwards;
     }
-
     .bio-panel.closing {
       animation: slideOut 0.4s ease-out forwards;
     }
-
     .bio-panel h2 {
       margin-bottom: 0.5rem;
       font-family: 'Inter', sans-serif;
@@ -477,7 +410,6 @@
       color: white;
       white-space: nowrap;
     }
-
     .bio-panel h3 {
       margin-bottom: 2rem;
       font-family: 'Inter', sans-serif;
@@ -487,7 +419,6 @@
       text-transform: uppercase;
       color: rgba(255, 255, 255, 0.7);
     }
-
     .bio-panel p {
       margin-bottom: 1.5rem;
       font-size: 1.1rem;
@@ -496,7 +427,6 @@
       letter-spacing: -0.01em;
       color: rgba(255, 255, 255, 0.95);
     }
-
     .close-btn {
       position: absolute;
       top: 2rem;
@@ -516,27 +446,21 @@
       outline: none;
       transition: opacity 0.2s;
     }
-
     .close-btn:hover {
       opacity: 1;
     }
-
     .close-btn:focus {
       outline: 2px solid rgba(255, 255, 255, 0.6);
       outline-offset: 4px;
       border-radius: 50%;
     }
-
-
     /* ============================================
        RESPONSIVE - MOBILE
        ============================================ */
-
     @media (max-width: 600px) {
       .lede-wrapper {
         padding: 0 1rem;
       }
-
       .lede {
         max-width: 90%;
         margin: 0 auto;
@@ -544,77 +468,63 @@
         line-height: 1.3;
         text-align: left;
       }
-
       .cityscape {
         display: none;
         gap: 0;
         padding: 0.5rem;
         bottom: 1rem;
       }
-
       .building {
         margin: 0 -3px;
         transform: scale(0.5);
         transform-origin: bottom;
       }
-
       .building:nth-child(3),
       .building:nth-child(4),
       .building:nth-child(5) {
         display: none;
       }
-
       .director-text {
         padding: 0.5rem;
         font-size: 0.65rem;
         bottom: 1rem;
       }
+      .address-text {
+        font-size: 0.65rem !important;
+      }
     }
-
-
     /* ============================================
        RESPONSIVE - TABLET
        ============================================ */
-
     @media (max-width: 768px) {
       .bio-panel h2 {
         font-size: 2rem;
       }
-
       .bio-panel h3 {
         font-size: 1rem;
       }
-
       .bio-panel p {
         font-size: 0.95rem;
       }
     }
-
-
     /* ============================================
        RESPONSIVE - SMALL MOBILE
        ============================================ */
-
     @media (max-width: 480px) {
       .bio-panel h2 {
         font-size: 1.5rem;
       }
-
       .bio-panel h3 {
         font-size: 0.8rem;
       }
-
       .bio-panel p {
         font-size: 0.85rem;
         line-height: 1.7;
       }
     }
-
-
     /* ============================================
        RESPONSIVE - LANDSCAPE MOBILE
        ============================================ */
-
     @media (max-width: 900px) and (orientation: landscape) {
       body {
         margin: 0;
@@ -622,63 +532,52 @@
         width: 100vw;
         overflow-x: hidden;
       }
-
       body.no-scroll {
         position: fixed !important;
         width: 100% !important;
         height: 100vh !important;
         overflow: hidden !important;
       }
-
       main {
         margin: 0 !important;
         padding: 0 !important;
         width: 100vw !important;
         min-height: 100vh;
       }
-
       .lede-wrapper {
         margin: 0;
         padding: 0;
         width: 100vw;
         min-height: 100vh;
       }
-
       .lede {
         max-width: 85%;
         font-size: clamp(1.5rem, 3.5vw, 2rem);
         line-height: 1.2;
       }
-
       .centered-text {
         font-size: clamp(3rem, 8vw, 5vw) !important;
       }
-
       .cityscape {
         gap: 4px;
         padding: 0.75rem;
       }
-
       .building {
         transform: scale(0.7);
         transform-origin: bottom;
       }
-
       .building:nth-child(1),
       .building:nth-child(2),
       .building:nth-child(4) {
         display: none;
       }
-
       .address-text {
         font-size: 0.6rem !important;
       }
-
       .director-text {
         padding: 0.75rem;
         font-size: 0.6rem;
       }
-
       .bio-panel {
         width: 100%;
         max-width: 100%;
@@ -694,7 +593,6 @@
         position: fixed !important;
         z-index: 9999 !important;
       }
-
       .bio-content {
         margin-top: 0;
         padding: 3rem 1.5rem 8rem 1.5rem;
@@ -704,24 +602,20 @@
         min-height: calc(100vh + 1px);
         min-height: calc(100dvh + 1px);
       }
-
       .bio-panel h2 {
         margin-top: 0;
         font-size: 1.5rem;
         white-space: normal;
       }
-
       .bio-panel h3 {
         margin-bottom: 1rem;
         font-size: 0.8rem;
       }
-
       .bio-panel p {
         margin-bottom: 1rem;
         font-size: 0.85rem;
         line-height: 1.6;
       }
-
       .close-btn {
         position: fixed;
         top: 0.5rem;
@@ -734,59 +628,46 @@
         border-radius: 50%;
       }
     }
-
-
     /* ============================================
        RESPONSIVE - LARGE DESKTOP (1440px - 1919px)
        ============================================ */
-
     @media (min-width: 1440px) and (max-width: 1919px) {
       .bio-panel {
         max-width: 600px;
         padding: 3.5rem 3rem;
       }
-
       .bio-panel h2 {
         font-size: 3rem;
       }
-
       .bio-panel h3 {
         font-size: 1.5rem;
       }
-
       .bio-panel p {
         font-size: 1.3rem;
         line-height: 1.75;
       }
     }
-
-
     /* ============================================
        RESPONSIVE - EXTRA LARGE DESKTOP (1920px+)
        ============================================ */
-
     @media (min-width: 1920px) {
       .bio-panel {
         max-width: 700px;
         padding: 4rem 3.5rem;
       }
-
       .bio-panel h2 {
         margin-bottom: 0.75rem;
         font-size: 3.5rem;
       }
-
       .bio-panel h3 {
         margin-bottom: 2.5rem;
         font-size: 1.8rem;
       }
-
       .bio-panel p {
         margin-bottom: 1.5rem;
         font-size: 1.6rem;
         line-height: 1.8;
       }
-
       .close-btn {
         top: 2.5rem;
         right: 2.5rem;
@@ -795,34 +676,27 @@
         font-size: 2.5rem;
       }
     }
-
-
     /* ============================================
        RESPONSIVE - 4K DISPLAYS (2560px+)
        ============================================ */
-
     @media (min-width: 2560px) {
       .bio-panel {
         max-width: 900px;
         padding: 6rem 5rem;
       }
-
       .bio-panel h2 {
         margin-bottom: 1rem;
         font-size: 5rem;
       }
-
       .bio-panel h3 {
         margin-bottom: 3rem;
         font-size: 2.5rem;
       }
-
       .bio-panel p {
         margin-bottom: 2rem;
         font-size: 2.2rem;
         line-height: 2;
       }
-
       .close-btn {
         top: 3rem;
         right: 3rem;
@@ -833,10 +707,8 @@
     }
   </style>
 </head>
-
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
-
   <!-- Hero Section -->
   <div class="lede-wrapper">
     <div class="lede">
@@ -845,13 +717,11 @@
       advantage.
     </div>
   </div>
-
   <!-- Director Info (visible on first section only) -->
   <div class="director-text" id="directorText">
     <strong>Director</strong><br>
     <a href="#" class="director-link" id="directorLink">Samantha du Sart</a>
   </div>
-
   <!-- Cityscape Icon -->
   <div class="cityscape" role="button" tabindex="0" aria-label="Open director bio panel">
     <div class="building">
@@ -878,7 +748,6 @@
       <div class="window"></div><div class="window"></div><div class="window"></div>
     </div>
   </div>
-
   <!-- Main Content Section -->
   <main id="main-content" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; width: 100%;">
     <h1 class="centered-text">Langthorne Gironde</h1>
@@ -894,7 +763,6 @@
       </p>
     </div>
   </main>
-
   <!-- Bio Panel (Slide-out) -->
   <div class="bio-panel" id="bioPanel" role="dialog" aria-modal="true" aria-labelledby="bioTitle">
     <button class="close-btn" id="closeBtn" aria-label="Close bio panel">&times;</button>
@@ -921,10 +789,8 @@
       </div>
     </div>
   </div>
-
   <!-- Cloudflare Email Protection -->
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-
   <script>
     // ============================================
     // CONSTANTS & ELEMENT REFERENCES
@@ -946,12 +812,9 @@
       directorText: document.getElementById('directorText'),
       directorLink: document.getElementById('directorLink')
     };
-
     // State
     let currentImageIndex = 0;
     let directorTextShown = false;
-
-
     // ============================================
     // BACKGROUND IMAGE CYCLING
     // ============================================
@@ -967,31 +830,24 @@
       elements.ledeWrapper.appendChild(overlay);
       return overlay;
     }
-
     const tintOverlay = createTintOverlay();
-
     // Ensure lede content stays above overlay
     if (elements.lede) {
       elements.lede.style.position = 'relative';
       elements.lede.style.zIndex = '1';
     }
-
     function preloadAndSwapBackground() {
       const nextIndex = (currentImageIndex + 1) % BACKGROUND_IMAGES.length;
       const img = new Image();
       img.src = BACKGROUND_IMAGES[nextIndex];
-
       img.onload = () => {
         elements.ledeWrapper.style.backgroundImage = `url('${BACKGROUND_IMAGES[nextIndex]}')`;
         tintOverlay.style.backgroundColor = 'transparent';
         currentImageIndex = nextIndex;
       };
     }
-
     // Start background cycling
     setInterval(preloadAndSwapBackground, BACKGROUND_TRANSITION_INTERVAL);
-
-
     // ============================================
     // DIRECTOR TEXT SCROLL VISIBILITY
     // ============================================
@@ -1013,10 +869,7 @@
         }
       }
     }
-
     window.addEventListener('scroll', handleDirectorTextVisibility);
-
-
     // ============================================
     // BIO PANEL CONTROLS
     // ============================================
@@ -1035,7 +888,6 @@
       // Focus close button for accessibility
       setTimeout(() => elements.closeBtn.focus(), 100);
     }
-
     function closeBioPanel() {
       elements.bioPanel.classList.remove('active');
       elements.bioPanel.classList.add('closing');
@@ -1053,8 +905,6 @@
         elements.cityscape.focus();
       }, 400);
     }
-
-
     // ============================================
     // EVENT LISTENERS
     // ============================================
@@ -1069,37 +919,31 @@
         openBioPanel();
       }
     });
-
     // Director link click handler
     elements.directorLink.addEventListener('click', (e) => {
       e.preventDefault();
       openBioPanel();
     });
-
     // Close button
     elements.closeBtn.addEventListener('click', closeBioPanel);
-
     // Click outside to close
     elements.bioPanel.addEventListener('click', (e) => {
       if (e.target === elements.bioPanel) {
         closeBioPanel();
       }
     });
-
     // Escape key to close panel
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && elements.bioPanel.classList.contains('active')) {
         closeBioPanel();
       }
     });
-
     // Trap focus within bio panel (accessibility)
     elements.bioPanel.addEventListener('keydown', (e) => {
       if (e.key === 'Tab' && elements.bioPanel.classList.contains('active')) {
         const focusableElements = elements.bioPanel.querySelectorAll('button, a[href]');
         const firstElement = focusableElements[0];
         const lastElement = focusableElements[focusableElements.length - 1];
-
         if (e.shiftKey && document.activeElement === firstElement) {
           e.preventDefault();
           lastElement.focus();
@@ -1110,6 +954,5 @@
       }
     });
   </script>
-
 </body>
 </html>
