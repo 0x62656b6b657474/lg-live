@@ -261,7 +261,7 @@
       position: fixed;
       bottom: 0;
       right: 0;
-      display: flex;
+      display: none;
       align-items: flex-end;
       gap: 6px;
       padding: 1rem;
@@ -356,6 +356,11 @@
       pointer-events: all;
       cursor: pointer;
       animation: fadeInDirector 1s ease-in 2.3s forwards;
+      transition: top 0.4s ease, bottom 0.4s ease, opacity 0.4s ease;
+    }
+    .director-text.scrolled {
+      top: 0;
+      bottom: auto;
     }
     .director-text:hover {
       opacity: 1;
@@ -469,7 +474,6 @@
         text-align: left;
       }
       .cityscape {
-        display: flex;
         gap: 0;
         padding: 0.5rem;
         bottom: 1rem;
@@ -800,7 +804,7 @@
     // ============================================
     
     const BACKGROUND_IMAGES = ['london.jpg'];
-    const SCROLL_THRESHOLD = 0.1; // Hide director text after scrolling 10% of viewport
+    const SCROLL_THRESHOLD = 0.9; // Move director text when scrolled 90% of viewport (second section fully visible)
     const BACKGROUND_TRANSITION_INTERVAL = 5000; // 5 seconds
     
     // Element references
@@ -860,10 +864,10 @@
       const windowHeight = window.innerHeight;
       
       if (scrollTop > windowHeight * SCROLL_THRESHOLD) {
-        elements.directorText.style.display = 'none';
+        elements.directorText.classList.add('scrolled');
         directorTextShown = true;
       } else {
-        elements.directorText.style.display = 'block';
+        elements.directorText.classList.remove('scrolled');
         
         // Remove animation after first show to prevent re-fade
         if (directorTextShown) {
