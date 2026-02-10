@@ -122,6 +122,7 @@
     html {
       width: 100vw;
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
     body {
       margin: 0;
@@ -137,23 +138,34 @@
       position: relative;
       z-index: 0;
       cursor: none;
+      opacity: 0;
+      transition: opacity 0.6s ease;
     }
-    /* Magnetic Cursor */
+    body.loaded {
+      opacity: 1;
+    }
+    /* Simple Cursor */
     .cursor {
       position: fixed;
-      width: 20px;
-      height: 20px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.8);
+      background-color: rgba(255, 255, 255, 0.9);
       pointer-events: none;
       z-index: 10000;
-      transition: transform 0.15s ease-out, width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+      transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
       mix-blend-mode: difference;
     }
     .cursor.hover {
-      width: 60px;
-      height: 60px;
-      background-color: rgba(255, 64, 129, 0.4);
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 64, 129, 0.6);
+      mix-blend-mode: normal;
+    }
+    .cursor.hover-light {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.8);
       mix-blend-mode: normal;
     }
     /* Hide cursor on touch devices */
@@ -829,6 +841,23 @@
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     // ============================================
+    // LOADING STATE
+    // ============================================
+    
+    // Wait for fonts and critical content to load
+    window.addEventListener('load', () => {
+      // Small delay to ensure fonts are fully rendered
+      setTimeout(() => {
+        document.body.classList.add('loaded');
+      }, 100);
+    });
+    
+    // Fallback in case load event takes too long
+    setTimeout(() => {
+      document.body.classList.add('loaded');
+    }, 2000);
+    
+    // ============================================
     // CONSTANTS & ELEMENT REFERENCES
     // ============================================
     
@@ -853,61 +882,57 @@
     let directorTextShown = false;
     
     // ============================================
-    // MAGNETIC CURSOR
+    // SIMPLE CURSOR
     // ============================================
     
     const cursor = document.querySelector('.cursor');
-    const magneticElements = [];
     let cursorX = 0;
     let cursorY = 0;
-    let isHovering = false;
     
-    // Update cursor position
+    // Update cursor position instantly
     document.addEventListener('mousemove', (e) => {
       cursorX = e.clientX;
       cursorY = e.clientY;
-      
-      if (!isHovering) {
-        cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
-      }
+      cursor.style.transform = `translate(${cursorX - 5}px, ${cursorY - 5}px)`;
     });
     
-    // Add magnetic effect to elements
-    function initMagneticElements() {
-      const targets = [
+    // Add hover effect to interactive elements
+    function initCursorHover() {
+      // Main page interactive elements (pink cursor)
+      const mainTargets = [
         elements.directorLink,
-        elements.centeredText,
-        elements.closeBtn,
-        ...document.querySelectorAll('.bio-panel a')
+        elements.centeredText
       ].filter(Boolean);
       
-      targets.forEach(target => {
+      mainTargets.forEach(target => {
         target.addEventListener('mouseenter', () => {
-          isHovering = true;
           cursor.classList.add('hover');
         });
         
         target.addEventListener('mouseleave', () => {
-          isHovering = false;
           cursor.classList.remove('hover');
         });
+      });
+      
+      // Bio panel elements (white cursor)
+      const bioTargets = [
+        elements.closeBtn,
+        ...document.querySelectorAll('.bio-panel a')
+      ].filter(Boolean);
+      
+      bioTargets.forEach(target => {
+        target.addEventListener('mouseenter', () => {
+          cursor.classList.add('hover-light');
+        });
         
-        target.addEventListener('mousemove', (e) => {
-          const rect = target.getBoundingClientRect();
-          const centerX = rect.left + rect.width / 2;
-          const centerY = rect.top + rect.height / 2;
-          
-          // Calculate magnetic pull (cursor moves toward center of element)
-          const deltaX = (centerX - cursorX) * 0.3;
-          const deltaY = (centerY - cursorY) * 0.3;
-          
-          cursor.style.transform = `translate(${cursorX - 30 + deltaX}px, ${cursorY - 30 + deltaY}px)`;
+        target.addEventListener('mouseleave', () => {
+          cursor.classList.remove('hover-light');
         });
       });
     }
     
     // Initialize after DOM is ready
-    setTimeout(initMagneticElements, 100);
+    setTimeout(initCursorHover, 100);
     
     // ============================================
     // BACKGROUND IMAGE CYCLING
