@@ -828,25 +828,27 @@
   </script>
 
 <script>
- // Animate bars randomly
-    const buildings = document.querySelectorAll('.building');
-    const minHeight = 20;
-    const maxHeight = 130;
+  const buildings = document.querySelectorAll('.building');
+  const minHeight = 20;
+  const portraitMobile = window.matchMedia('(max-width: 430px) and (orientation: portrait)');
+  const maxHeight = portraitMobile.matches ? 50 : 130;
 
-    function randomHeight() {
-      return Math.floor(Math.random() * (maxHeight - minHeight) + minHeight);
-    }
+  function randomHeight() {
+    return Math.floor(Math.random() * (maxHeight - minHeight) + minHeight);
+  }
 
-    function animateBars() {
-      buildings.forEach(bar => {
-        bar.style.transition = 'height 1.5s ease';
-        bar.style.height = randomHeight() + 'px';
-      });
-    }
+  function animateBars() {
+    buildings.forEach(bar => {
+      bar.style.transition = 'height 1.5s ease';
+      bar.style.height = randomHeight() + 'px';
+    });
+  }
 
-    setInterval(animateBars, 2000);
-    animateBars();
+  setInterval(animateBars, 2000);
+  animateBars();
 </script>
+
+  
 
 </body>
 </html>
