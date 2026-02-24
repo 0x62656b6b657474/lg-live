@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,7 +117,26 @@
       0% { background-position: -200% 0; }
       100% { background-position: 200% 0; }
     }
-    /* ============================================
+    @keyframes barWave1 {
+      0%, 100% { height: 38px; }
+      50% { height: 28px; }
+    }
+    @keyframes barWave2 {
+      0%, 100% { height: 22px; }
+      50% { height: 48px; }
+    }
+    @keyframes barWave3 {
+      0%, 100% { height: 62px; }
+      50% { height: 40px; }
+    }
+    @keyframes barWave4 {
+      0%, 100% { height: 18px; }
+      50% { height: 38px; }
+    }
+    @keyframes barWave5 {
+      0%, 100% { height: 46px; }
+      50% { height: 26px; }
+    }    /* ============================================
        BASE STYLES
        ============================================ */
     html {
@@ -343,9 +363,21 @@
     .building:nth-child(2) { width: 18px; height: 22px; }
     .building:nth-child(3) { width: 18px; height: 62px; }
     .building:nth-child(4) { width: 18px; height: 18px; }
-    .building:nth-child(5) { width: 18px; height: 46px; }
+.building:nth-child(5) { width: 18px; height: 46px; }
+       .cityscape:hover .building:nth-child(1) { animation: barWave1 2.2s ease-in-out infinite; }
+    .cityscape:hover .building:nth-child(2) { animation: barWave2 1.8s ease-in-out infinite 0.3s; }
+    .cityscape:hover .building:nth-child(3) { animation: barWave3 2.5s ease-in-out infinite 0.1s; }
+    .cityscape:hover .building:nth-child(4) { animation: barWave4 1.9s ease-in-out infinite 0.5s; }
+    .cityscape:hover .building:nth-child(5) { animation: barWave5 2.1s ease-in-out infinite 0.2s; }
 
-    
+    @media (hover: none) and (pointer: coarse) {
+      .cityscape .building:nth-child(1) { animation: barWave1 2.2s ease-in-out infinite; }
+      .cityscape .building:nth-child(2) { animation: barWave2 1.8s ease-in-out infinite 0.3s; }
+      .cityscape .building:nth-child(3) { animation: barWave3 2.5s ease-in-out infinite 0.1s; }
+      .cityscape .building:nth-child(4) { animation: barWave4 1.9s ease-in-out infinite 0.5s; }
+      .cityscape .building:nth-child(5) { animation: barWave5 2.1s ease-in-out infinite 0.2s; }
+    }
+
     /* ============================================
        TEXT ELEMENTS
        ============================================ */
