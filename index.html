@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -281,13 +282,10 @@
       border-bottom: 2px solid rgba(255, 255, 255, 0.5);
       box-sizing: border-box;
     }
-    .cityscape:not(:hover) {
-      animation: fadeIn 1.5s ease-in 1.5s forwards, gentlePulse 3s ease-in-out 4s infinite;
+        .cityscape {
+      animation: fadeIn 1.5s ease-in 1.5s forwards;
     }
-    .cityscape:hover {
-      animation: none;
-      opacity: 1;
-    }
+   
     .cityscape::before {
       content: "";
       position: absolute;
@@ -486,6 +484,7 @@
   .building:nth-child(7)  { height: 24px; display: none; }  /* hidden */
   .building:nth-child(8)  { height: 62px; }
       .chart-label { font-size: 0.42rem; }
+      .chart-label[style*="bottom: 118px"] { display: none; }
     }
 
     /* ============================================
@@ -771,7 +770,19 @@
 
     let currentImageIndex = 0;
     let directorTextShown = false;
+  setTimeout(() => {
+      elements.cityscape.style.opacity = '1';
+      elements.cityscape.style.animation = 'gentlePulse 3s ease-in-out infinite';
+    }, 4000);
 
+    elements.cityscape.addEventListener('mouseenter', () => {
+      elements.cityscape.style.animation = 'none';
+      elements.cityscape.style.opacity = '1';
+    });
+    elements.cityscape.addEventListener('mouseleave', () => {
+      elements.cityscape.style.animation = 'gentlePulse 3s ease-in-out infinite';
+      elements.cityscape.style.opacity = '1';
+    });
     // Cursor
     const cursor = document.querySelector('.cursor');
     document.addEventListener('mousemove', (e) => {
