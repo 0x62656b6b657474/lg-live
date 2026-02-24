@@ -832,6 +832,11 @@
   const minHeight = 20;
   const portraitMobile = window.matchMedia('(max-width: 430px) and (orientation: portrait)');
 
+  // Cap initial CSS heights on portrait mobile before first animation
+  if (portraitMobile.matches) {
+    buildings.forEach(bar => { bar.style.height = '30px'; });
+  }
+
   function randomHeight() {
     const maxHeight = portraitMobile.matches ? 50 : 130;
     return Math.floor(Math.random() * (maxHeight - minHeight) + minHeight);
