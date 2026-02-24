@@ -828,40 +828,7 @@
     });
   </script>
 
-<script>
-  const buildings = document.querySelectorAll('.building');
-  const portraitMobile = window.matchMedia('(max-width: 430px) and (orientation: portrait)');
 
-  // Remove CSS animations so JS has full control
-  buildings.forEach(bar => {
-    bar.style.animation = 'none';
-  });
-
-  // Cap initial heights on portrait
-  if (portraitMobile.matches) {
-    buildings.forEach(bar => { bar.style.height = '30px'; });
-  }
-
-  function randomHeight() {
-    const maxHeight = portraitMobile.matches ? 80 : 130;
-    const minH = portraitMobile.matches ? 10 : 20;
-    return Math.floor(Math.random() * (maxHeight - minH) + minH);
-  }
-
-  const isMobile = window.matchMedia('(max-width: 900px)').matches;
-  const interval = isMobile ? 6000 : 2000;
-  const transition = isMobile ? '4s' : '1.5s';
-
-  function animateBars() {
-    buildings.forEach(bar => {
-      bar.style.transition = `height ${transition} ease`;
-      bar.style.height = randomHeight() + 'px';
-    });
-  }
-
-  setInterval(animateBars, interval);
-  animateBars();
-</script>
   
 
 </body>
