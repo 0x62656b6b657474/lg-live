@@ -831,9 +831,9 @@
   const buildings = document.querySelectorAll('.building');
   const minHeight = 20;
   const portraitMobile = window.matchMedia('(max-width: 430px) and (orientation: portrait)');
-  const maxHeight = portraitMobile.matches ? 50 : 130;
 
   function randomHeight() {
+    const maxHeight = portraitMobile.matches ? 50 : 130;
     return Math.floor(Math.random() * (maxHeight - minHeight) + minHeight);
   }
 
