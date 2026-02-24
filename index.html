@@ -548,11 +548,21 @@
         gap: 3px;
         padding: 0.5rem;
       }
-      .building:nth-child(1) { width: 12px; height: 25px; }
-      .building:nth-child(2) { width: 12px; height: 15px; }
-      .building:nth-child(3) { width: 12px; height: 42px; }
-      .building:nth-child(4) { width: 12px; height: 12px; }
-      .building:nth-child(5) { width: 12px; height: 30px; }
+       .building:nth-child(1) { width: 12px; height: 25px; }
+      .building:nth-child(2) { width: 12px; height: 42px; }
+      .building:nth-child(3) { width: 12px; height: 30px; }
+      .building:nth-child(4) { display: none; }
+      .building:nth-child(5) { display: none; }
+
+         .cityscape::before {
+        background-image: repeating-linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.25) 0px,
+          rgba(255, 255, 255, 0.25) 1px,
+          transparent 1px,
+          transparent 28px
+        );
+      }
       
       .director-text {
         padding: 0.5rem;
