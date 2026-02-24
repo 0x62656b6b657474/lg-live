@@ -329,8 +329,16 @@
       z-index: 1000;
       pointer-events: all;
       cursor: pointer;
-      animation: fadeIn 1.5s ease-in 1.5s forwards, gentlePulse 3s ease-in-out 4s infinite;
+      animation: fadeIn 1.5s ease-in 1.5s forwards;
       background: none;
+    }
+
+      .cityscape:not(:hover) {
+            animation: fadeIn 1.5s ease-in 1.5s forwards, gentlePulse 3s ease-in-out 4s infinite;
+    }
+    .cityscape:hover {
+      animation: none;
+      opacity: 1;
     }
     .cityscape::before {
       content: "";
