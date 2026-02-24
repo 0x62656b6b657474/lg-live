@@ -830,7 +830,6 @@
 
 <script>
   const buildings = document.querySelectorAll('.building');
-  const minHeight = 20;
   const portraitMobile = window.matchMedia('(max-width: 430px) and (orientation: portrait)');
 
   // Remove CSS animations so JS has full control
@@ -844,13 +843,14 @@
   }
 
   function randomHeight() {
-    const maxHeight = portraitMobile.matches ? 50 : 130;
-    return Math.floor(Math.random() * (maxHeight - minHeight) + minHeight);
+    const maxHeight = portraitMobile.matches ? 80 : 130;
+    const minH = portraitMobile.matches ? 10 : 20;
+    return Math.floor(Math.random() * (maxHeight - minH) + minH);
   }
 
   const isMobile = window.matchMedia('(max-width: 900px)').matches;
   const interval = isMobile ? 6000 : 2000;
-const transition = isMobile ? '4s' : '1.5s';
+  const transition = isMobile ? '4s' : '1.5s';
 
   function animateBars() {
     buildings.forEach(bar => {
@@ -862,7 +862,6 @@ const transition = isMobile ? '4s' : '1.5s';
   setInterval(animateBars, interval);
   animateBars();
 </script>
-
   
 
 </body>
