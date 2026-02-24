@@ -301,61 +301,51 @@
       position: fixed;
       bottom: 0;
       right: 0;
-      display: none;
+      display: flex;
       align-items: flex-end;
-      gap: 6px;
+      gap: 5px;
       padding: 1rem;
       opacity: 0;
       z-index: 1000;
       pointer-events: all;
       cursor: pointer;
       animation: fadeIn 1.5s ease-in 1.5s forwards, gentlePulse 3s ease-in-out 4s infinite;
+      background: none;
     }
-    .cityscape:hover,
-    .cityscape:focus-visible {
-      animation: fadeIn 1.5s ease-in 1.5s forwards, gentlePulse 3s ease-in-out 4s infinite;
-      transform: translateY(-6px);
+    .cityscape::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.25) 0px,
+        rgba(255, 255, 255, 0.25) 1px,
+        transparent 1px,
+        transparent 16px
+      );
+      pointer-events: none;
+      z-index: 0;
     }
     .building {
       position: relative;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-content: stretch;
-      gap: 4px;
-      padding: 4px;
-      background-color: rgba(255, 255, 255, 0.3);
-      border-radius: 2px 2px 0 0;
-      overflow: hidden;
+      z-index: 1;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 1px 1px 0 0;
+      flex-shrink: 0;
     }
     .building::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255, 64, 129, 0.6) 50%,
-        transparent 100%
-      );
-      background-size: 200% 100%;
-      animation: pinkSweep 5s ease-in-out infinite;
-      pointer-events: none;
+      display: none;
     }
-    .building:nth-child(1) { width: 20px; height: 60px; background-color: white; }
-    .building:nth-child(2) { width: 15px; height: 40px; background-color: white; }
-    .building:nth-child(3) { width: 25px; height: 80px; background-color: white; }
-    .building:nth-child(4) { width: 10px; height: 30px; background-color: white; }
-    .building:nth-child(5) { width: 18px; height: 50px; background-color: white; }
     .window {
-      width: 6px;
-      height: 6px;
-      background-color: transparent;
-      border-radius: 1px;
+      display: none;
     }
+    .building:nth-child(1) { width: 18px; height: 38px; }
+    .building:nth-child(2) { width: 18px; height: 22px; }
+    .building:nth-child(3) { width: 18px; height: 62px; }
+    .building:nth-child(4) { width: 18px; height: 18px; }
+    .building:nth-child(5) { width: 18px; height: 46px; }
+
+    
     /* ============================================
        TEXT ELEMENTS
        ============================================ */
@@ -514,20 +504,15 @@
         text-align: left;
       }
       .cityscape {
-        gap: 0;
+        gap: 3px;
         padding: 0.5rem;
-        bottom: 1rem;
       }
-      .building {
-        margin: 0 -3px;
-        transform: scale(0.5);
-        transform-origin: bottom;
-      }
-      .building:nth-child(3),
-      .building:nth-child(4),
-      .building:nth-child(5) {
-        display: none;
-      }
+      .building:nth-child(1) { width: 12px; height: 25px; }
+      .building:nth-child(2) { width: 12px; height: 15px; }
+      .building:nth-child(3) { width: 12px; height: 42px; }
+      .building:nth-child(4) { width: 12px; height: 12px; }
+      .building:nth-child(5) { width: 12px; height: 30px; }
+      
       .director-text {
         padding: 0.5rem;
         font-size: 0.65rem;
