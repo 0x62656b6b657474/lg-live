@@ -799,7 +799,37 @@
         el.addEventListener('mouseleave', () => cursor.classList.remove('hover-light'));
       });
     }
+
     setTimeout(initCursorHover, 100);
+
+   const buildings = elements.cityscape.querySelectorAll('.building');
+    const colors = ['#ff6464', '#ffb830', '#64dc64', '#32b4ff', '#b464ff', '#ff64b4'];
+    let rainbowInterval;
+
+    let restingIndex = 0;
+    const restingInterval = setInterval(() => {
+      if (!rainbowInterval) {
+        buildings.forEach((b, idx) => {
+          b.style.backgroundColor = colors[(restingIndex + idx) % colors.length];
+        });
+        restingIndex++;
+      }
+    }, 600);
+
+    elements.cityscape.addEventListener('mouseenter', () => {
+      let i = 0;
+      rainbowInterval = setInterval(() => {
+        buildings.forEach((b, idx) => {
+          b.style.backgroundColor = colors[(i + idx) % colors.length];
+        });
+        i++;
+      }, 300);
+    });
+
+    elements.cityscape.addEventListener('mouseleave', () => {
+      clearInterval(rainbowInterval);
+      rainbowInterval = null;
+    });
 
     // Background cycling
     function createTintOverlay() {
