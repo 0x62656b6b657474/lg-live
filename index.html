@@ -832,7 +832,12 @@
   const minHeight = 20;
   const portraitMobile = window.matchMedia('(max-width: 430px) and (orientation: portrait)');
 
-  // Cap initial CSS heights on portrait mobile before first animation
+  // Remove CSS animations so JS has full control
+  buildings.forEach(bar => {
+    bar.style.animation = 'none';
+  });
+
+  // Cap initial heights on portrait
   if (portraitMobile.matches) {
     buildings.forEach(bar => { bar.style.height = '30px'; });
   }
@@ -842,14 +847,18 @@
     return Math.floor(Math.random() * (maxHeight - minHeight) + minHeight);
   }
 
+  const isMobile = window.matchMedia('(max-width: 900px)').matches;
+  const interval = isMobile ? 3000 : 2000;
+  const transition = isMobile ? '2s' : '1.5s';
+
   function animateBars() {
     buildings.forEach(bar => {
-      bar.style.transition = 'height 1.5s ease';
+      bar.style.transition = `height ${transition} ease`;
       bar.style.height = randomHeight() + 'px';
     });
   }
 
-  setInterval(animateBars, 2000);
+  setInterval(animateBars, interval);
   animateBars();
 </script>
 
