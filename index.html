@@ -87,15 +87,16 @@
 
     /* ── RESET ── */
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{width:100vw;overflow-x:hidden;scroll-behavior:smooth}
+   html{width:100vw;scroll-behavior:smooth;scrollbar-gutter:stable}
+
     body{
-      margin:0;padding:0;width:100%;max-width:100vw;overflow-x:hidden;
+  margin:0;padding:0;width:100%;max-width:100vw;overflow-x:clip;
       font-family:'Inter',sans-serif;font-weight:400;letter-spacing:-0.01em;
       color:white;background-color:#ff4081;cursor:none;
       opacity:0;transition:opacity 1.1s ease;
     }
     body.loaded    {opacity:1}
-    body.no-scroll {overflow:hidden;height:100vh}
+    body.no-scroll {overflow:hidden;height:100vh;}
 
     /* ── CURSOR ── */
     .cursor{
@@ -130,11 +131,7 @@
     /* ── VIGNETTE ── */
     .vignette{position:fixed;inset:0;z-index:800;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 42%,rgba(0,0,0,0.62) 100%)}
 
-    /* ── HERO ──
-       FIX 1: translateZ(0) forces a compositing layer so overflow:hidden correctly
-               clips the ken-burns child on iOS Safari.
-       FIX 2: 100dvh prevents the hero falling short when the mobile browser
-               reserves space for the address bar. ── */
+    /* ── HERO ── */
     .lede-wrapper{
       position:relative;display:flex;align-items:center;justify-content:center;
       min-height:100vh;min-height:100dvh;padding:0 2rem;
@@ -162,6 +159,33 @@
       background:linear-gradient(175deg,transparent 20%,rgba(255,64,129,0.45) 22%,rgba(255,64,129,0.35) 50%,rgba(255,64,129,0.45) 78%,transparent 80%);
       animation:swishIn 0.8s ease-out 2.4s forwards;z-index:-1;
     }
+
+    /* ── DIRECTOR PILL — fixed top-left ── */
+    .director-text{
+      position:fixed;
+      top:0;left:0;
+      margin:1rem;
+      margin-top:calc(clamp(14px,2.8vh,28px) + 1rem);
+      font-family:'Inter',sans-serif;font-size:0.7rem;font-weight:400;
+      letter-spacing:0.12em;text-transform:uppercase;
+      color:white;background:rgba(255,255,255,0.15);
+      border:1px solid rgba(255,255,255,0.35);
+      border-radius:100px;padding:0.55em 1.2em;
+      backdrop-filter:blur(6px);
+      opacity:0;z-index:1000;pointer-events:all;cursor:pointer;
+      animation:fadeInDirector 1s ease-in 2.6s forwards;
+      transition:opacity 0.4s ease,background 0.25s ease,border-color 0.25s ease,color 0.25s ease;
+    }
+    .director-text:hover{opacity:1;background:rgba(255,255,255,0.25);border-color:rgba(255,255,255,0.7)}
+    .director-text.hide{opacity:0!important;animation:none}
+
+    /* On the cream services section */
+    .director-text.on-light{
+      color:#1a0010;
+      background:rgba(26,0,16,0.06);
+      border-color:rgba(26,0,16,0.25);
+    }
+    .director-text.on-light:hover{background:rgba(255,64,129,0.1);border-color:#ff4081;color:#ff4081}
 
     /* ── CITYSCAPE ── */
     .cityscape{
@@ -196,28 +220,19 @@
     .cityscape.wave .building:nth-child(6){animation:barWave3 2.5s ease-in-out infinite 0.1s}
     .cityscape.wave .building:nth-child(7){animation:barWave4 1.9s ease-in-out infinite 0.5s}
     .cityscape.wave .building:nth-child(8){animation:barWave5 2.1s ease-in-out infinite 0.2s}
+    .cityscape.pulsing{animation:gentlePulse 3s ease-in-out 1 !important;}
 
-    .cityscape.pulsing {
-      animation: gentlePulse 3s ease-in-out 1 !important;
-    }
-    .centered-text{font-family:'Adelia',sans-serif;font-size:5vw;color:white;white-space:nowrap;text-align:center;opacity:1;transition:opacity 0.4s ease}
-    .centered-text.hide{opacity:0!important}
+  .centered-text {
+  font-family: 'Adelia', sans-serif;
+  font-size: 5vw;
+  color: white;
+  white-space: nowrap;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}   .centered-text.hide{opacity:0!important}
     .address-text{font-family:'Inter',sans-serif;font-weight:400;letter-spacing:-0.01em;transition:opacity 0.4s ease}
     .address-text.hide{opacity:0!important}
-    .director-text{
-      position:fixed;bottom:0;left:0;
-      padding:1rem 1rem calc(clamp(14px,2.8vh,28px) + 1rem) 1rem;
-      font-family:'Inter',sans-serif;font-size:0.85rem;font-weight:400;
-      line-height:1.6;letter-spacing:-0.01em;text-align:left;
-      opacity:0;z-index:1000;pointer-events:all;cursor:pointer;
-      animation:fadeInDirector 1s ease-in 2.6s forwards;
-      transition:top 0.4s ease,bottom 0.4s ease,opacity 0.4s ease;
-    }
-    .director-text.scrolled{top:0;bottom:auto}
-    .director-text:hover{opacity:1}
-    .director-text.hide{opacity:0!important;animation:none}
-    .director-link{color:white;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.5);transition:border-bottom-color 0.2s ease}
-    .director-link:hover{border-bottom-color:rgba(255,255,255,1)}
 
     /* ── BIO PANEL ── */
     .bio-panel{
@@ -241,6 +256,236 @@
     .close-btn:hover{opacity:1}
     .close-btn:focus{outline:2px solid rgba(255,255,255,0.6);outline-offset:4px;border-radius:50%}
 
+    /* ── SERVICES SECTION ── */
+    .services-section {
+      position: relative;
+      background-color: #f5f0eb;
+      padding: clamp(5rem, 10vh, 9rem) clamp(1.5rem, 6vw, 7rem);
+      overflow: hidden;
+    }
+    .services-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 79px,
+          rgba(0,0,0,0.025) 79px,
+          rgba(0,0,0,0.025) 80px
+        );
+      pointer-events: none;
+    }
+    .services-section::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: linear-gradient(to bottom, #ff4081 60%, rgba(255,64,129,0.1));
+    }
+    .services-inner {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .services-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: clamp(3rem, 6vh, 5rem);
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .services-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #ff4081;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .services-eyebrow.visible { opacity: 1; }
+    .services-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      color: #1a0010;
+      max-width: 520px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+    }
+    .services-title.visible { opacity: 1; transform: translateY(0); }
+    .services-intro {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(0.85rem, 1.2vw, 1rem);
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(26,0,16,0.55);
+      max-width: 340px;
+      align-self: flex-end;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease 0.25s, transform 0.7s ease 0.25s;
+    }
+    .services-intro.visible { opacity: 1; transform: translateY(0); }
+    .services-divider {
+      height: 1px;
+      background: rgba(26,0,16,0.12);
+      margin-bottom: clamp(2.5rem, 5vh, 4rem);
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 0.9s cubic-bezier(0.16,1,0.3,1) 0.3s;
+    }
+    .services-divider.visible { transform: scaleX(1); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .service-item {
+      display: grid;
+      grid-template-columns: clamp(2rem,5vw,4rem) 1fr clamp(12rem,22vw,20rem);
+      align-items: start;
+      gap: 0 clamp(1.5rem,3vw,3rem);
+      padding: clamp(1.8rem,3.5vh,2.8rem) 0;
+      border-bottom: 1px solid rgba(26,0,16,0.1);
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      cursor: default;
+      position: relative;
+    }
+    .service-item::before {
+      content: "";
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 0; height: 1px;
+      background: #ff4081;
+      transition: width 0.4s ease;
+    }
+    .service-item:hover::before { width: 100%; }
+    .service-item.visible { opacity: 1; transform: translateY(0); }
+    .service-num {
+      font-family: 'Inter', monospace;
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: rgba(255,64,129,0.6);
+      letter-spacing: 0.05em;
+      padding-top: 0.2rem;
+      line-height: 1;
+    }
+    .service-name {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.3rem, 2.2vw, 2rem);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #1a0010;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+      transition: color 0.3s ease;
+    }
+    .service-item:hover .service-name { color: #ff4081; }
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .service-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(26,0,16,0.4);
+      border: 1px solid rgba(26,0,16,0.15);
+      padding: 0.2em 0.6em;
+      border-radius: 2px;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+    .service-item:hover .service-tag {
+      color: #ff4081;
+      border-color: rgba(255,64,129,0.35);
+    }
+    .service-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(0.8rem, 1vw, 0.92rem);
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(26,0,16,0.55);
+      transition: color 0.3s ease;
+    }
+    .service-item:hover .service-desc { color: rgba(26,0,16,0.8); }
+    .services-statement {
+      margin-top: clamp(3.5rem, 7vh, 6rem);
+      padding-top: clamp(2rem, 4vh, 3.5rem);
+      border-top: 1px solid rgba(26,0,16,0.12);
+      display: flex;
+      align-items: center;
+      gap: clamp(2rem, 5vw, 5rem);
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .services-statement.visible { opacity: 1; transform: translateY(0); }
+    .statement-quote {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.4;
+      color: rgba(26,0,16,0.65);
+      max-width: 560px;
+      font-style: italic;
+    }
+    .statement-accent {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .accent-line { display: block; height: 2px; background: #ff4081; border-radius: 1px; }
+    .accent-line:nth-child(1) { width: 48px; }
+    .accent-line:nth-child(2) { width: 28px; opacity: 0.5; }
+    .accent-line:nth-child(3) { width: 16px; opacity: 0.25; }
+
+    /* ── MAIN NAMEPLATE SECTION ── */
+  /* ── RESPONSIVE SERVICES ── */
+    @media (max-width: 860px) {
+      .services-section { padding: 4rem 1.75rem; }
+      .service-item {
+        grid-template-columns: 2.5rem 1fr;
+        grid-template-rows: auto auto;
+        gap: 0 1.25rem;
+      }
+      .service-desc { grid-column: 2 / -1; grid-row: 2; margin-top: 0.65rem; }
+      .services-header { flex-direction: column; align-items: flex-start; gap: 1.25rem; margin-bottom: 2.5rem; }
+      .services-intro { max-width: 100%; font-size: 0.9rem; }
+    }
+    @media (max-width: 520px) {
+      .services-section { padding: 3.5rem 1.25rem 3rem; }
+      .services-section::after { display: none; }
+      .services-header { margin-bottom: 2rem; gap: 1rem; }
+      .services-title { font-size: clamp(1.75rem, 7vw, 2.2rem); }
+      .services-eyebrow { margin-bottom: 0.6rem; }
+      .services-intro { font-size: 0.85rem; line-height: 1.7; color: rgba(26,0,16,0.5); }
+      .services-divider { margin-bottom: 0; }
+      .service-item { display: flex; flex-direction: column; gap: 0; padding: 1.5rem 0; border-bottom: 1px solid rgba(26,0,16,0.1); }
+      .service-num { font-size: 0.58rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: #ff4081; }
+      .service-name { font-size: clamp(1.1rem, 5vw, 1.35rem); margin-bottom: 0.5rem; line-height: 1.2; }
+      .service-tags { display: none; }
+      .service-desc { margin-top: 0.4rem; font-size: 0.82rem; line-height: 1.75; color: rgba(26,0,16,0.5); }
+      .services-statement { margin-top: 2.5rem; padding-top: 1.75rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .statement-quote { font-size: 1rem; line-height: 1.5; }
+    }
+
     /* ── RESPONSIVE ── */
     @media(max-width:430px) and (orientation:portrait){
       .cityscape{gap:5px;padding-left:1.75rem;height:120px}
@@ -254,7 +499,7 @@
     @media(max-width:600px){
       .lede-wrapper{padding:0 1rem}
       .lede{max-width:90%;margin:0 auto;font-size:clamp(1.2rem,5vw,1.5rem);line-height:1.3;text-align:left}
-      .director-text{padding:0.5rem;font-size:0.65rem;bottom:1rem}
+      .director-text{font-size:0.6rem}
       .address-text{padding:0.5rem!important;font-size:0.65rem!important;bottom:1rem!important}
     }
     @media(max-width:768px){
@@ -276,7 +521,7 @@
       .chart-label[style*="bottom: 118px"]{display:none}
       .building:nth-child(5),.building:nth-child(7){display:none}
       .address-text{font-size:0.6rem!important;padding:0.75rem!important}
-      .director-text{padding:0.75rem;font-size:0.6rem}
+      .director-text{font-size:0.6rem}
       .bio-panel{
         width:100%;max-width:100%;height:100vh;height:100dvh;padding:0;
         justify-content:flex-start!important;align-items:flex-start!important;
@@ -305,6 +550,11 @@
   <div class="cursor" id="cursor"></div>
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
+  <!-- Director pill — top left, always visible -->
+  <button class="director-text" id="directorText" aria-label="Open Samantha du Sart bio">
+    Meet the Director
+  </button>
+
   <!-- Hero Section -->
   <div class="lede-wrapper">
     <div class="lede-bg" aria-hidden="true"></div>
@@ -313,12 +563,6 @@
       complex change into <span class="highlight">measurable</span><br>
       advantage.
     </div>
-  </div>
-
-  <!-- Director Info -->
-  <div class="director-text" id="directorText">
-    <strong>Director</strong><br>
-    <a href="#" class="director-link" id="directorLink">Samantha du Sart</a>
   </div>
 
   <!-- Cityscape -->
@@ -333,9 +577,120 @@
     <div class="building"></div>
   </div>
 
-  <!-- Main Content Section -->
-  <main id="main-content" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;width:100%;">
-    <h1 class="centered-text" id="centeredText">Langthorne Gironde</h1>
+  <!-- Bridge gradient: hero pink → cream -->
+  <div aria-hidden="true" style="height:4px;background:linear-gradient(to bottom,#ff4081,#f5f0eb);display:block;"></div>
+
+  <!-- ── SERVICES SECTION ── -->
+  <section id="services" class="services-section" aria-label="Our services">
+    <div class="services-inner">
+      <div class="services-header">
+        <div>
+          <p class="services-eyebrow" id="svcEyebrow">What we do</p>
+          <h2 class="services-title" id="svcTitle">Turning complexity<br>into clarity.</h2>
+        </div>
+        <p class="services-intro" id="svcIntro">We work across the full spectrum of financial change — from the strategic to the operational — delivering programmes that hold under pressure and leave lasting capability behind.</p>
+      </div>
+
+      <div class="services-divider" id="svcDivider"></div>
+
+      <div class="services-grid" id="servicesGrid">
+
+        <div class="service-item" data-svc>
+          <span class="service-num">01</span>
+          <div>
+            <h3 class="service-name">Change Programme Leadership</h3>
+            <div class="service-tags">
+              <span class="service-tag">Front Office</span>
+              <span class="service-tag">Middle Office</span>
+              <span class="service-tag">Back Office</span>
+            </div>
+          </div>
+          <p class="service-desc">End-to-end ownership of complex, multi-workstream programmes within asset management. Structuring delivery frameworks, managing interdependencies, and holding pace from mobilisation through to benefit realisation.</p>
+        </div>
+
+        <div class="service-item" data-svc>
+          <span class="service-num">02</span>
+          <div>
+            <h3 class="service-name">Operating Model Transformation</h3>
+            <div class="service-tags">
+              <span class="service-tag">Target Operating Model</span>
+              <span class="service-tag">Process Design</span>
+            </div>
+          </div>
+          <p class="service-desc">Designing future-state operating models that are lean, scalable, and aligned to commercial strategy. Translating vision into executable design with clarity on people, process, and technology implications.</p>
+        </div>
+
+        <div class="service-item" data-svc>
+          <span class="service-num">03</span>
+          <div>
+            <h3 class="service-name">Technology & Systems Change</h3>
+            <div class="service-tags">
+              <span class="service-tag">OMS / PMS</span>
+              <span class="service-tag">Data</span>
+              <span class="service-tag">Platform Migration</span>
+            </div>
+          </div>
+          <p class="service-desc">Business-side leadership of technology-enabled change. Bridging the gap between IT delivery and business outcome — defining requirements, managing UAT, and ensuring adoption sticks once systems go live.</p>
+        </div>
+
+        <div class="service-item" data-svc>
+          <span class="service-num">04</span>
+          <div>
+            <h3 class="service-name">Regulatory & Compliance Programmes</h3>
+            <div class="service-tags">
+              <span class="service-tag">EMIR</span>
+              <span class="service-tag">MiFID II</span>
+              <span class="service-tag">AIFMD</span>
+            </div>
+          </div>
+          <p class="service-desc">Mobilising and delivering regulatory-driven change with the pace deadlines demand. Coordinating across legal, compliance, operations, and technology to build solutions that meet the letter and spirit of requirements.</p>
+        </div>
+
+        <div class="service-item" data-svc>
+          <span class="service-num">05</span>
+          <div>
+            <h3 class="service-name">Stakeholder Alignment & Governance</h3>
+            <div class="service-tags">
+              <span class="service-tag">Executive Engagement</span>
+              <span class="service-tag">Board Reporting</span>
+            </div>
+          </div>
+          <p class="service-desc">Creating the conditions for decisions to be made and held. Designing governance structures that cut through, building confidence at ExCo and Board level, and keeping the right people aligned at the right moments.</p>
+        </div>
+
+        <div class="service-item" data-svc>
+          <span class="service-num">06</span>
+          <div>
+            <h3 class="service-name">Interim & Fractional Leadership</h3>
+            <div class="service-tags">
+              <span class="service-tag">COO Support</span>
+              <span class="service-tag">Programme Director</span>
+            </div>
+          </div>
+          <p class="service-desc">Senior change capability deployed on a flexible basis — from a few days per month to full-time interim engagement. Immediate contribution, no ramp-up time, and a focus on leaving the organisation stronger than we found it.</p>
+        </div>
+
+      </div><!-- /services-grid -->
+
+      <div class="services-statement" id="svcStatement">
+        <div class="statement-accent" aria-hidden="true">
+          <span class="accent-line"></span>
+          <span class="accent-line"></span>
+          <span class="accent-line"></span>
+        </div>
+        <p class="statement-quote">"Progress is impossible without change, and those who cannot change their minds cannot change anything." — George Bernard Shaw</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Bridge gradient: cream → pink nameplate -->
+  <div aria-hidden="true" style="height:4px;background:linear-gradient(to bottom,#f5f0eb,#ff4081);display:block;"></div>
+
+  <!-- Main Content Section (nameplate) -->
+<main id="main-content" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;width:100%;">
+  <h1 class="centered-text" id="centeredText">Langthorne Gironde</h1>
+ 
     <div class="address-text" id="addressText" style="position:absolute;bottom:0;left:0;padding:1rem 1rem calc(clamp(14px, 2.8vh, 28px) + 1rem) 1rem;text-align:left;font-size:0.85rem;line-height:1.6;opacity:0.85;z-index:1001;">
       <strong>Registered Office</strong><br>
       124 City Road · London · EC1V 2NX · UK
@@ -366,20 +721,19 @@
     </div>
   </div>
 
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     /* page load */
     window.addEventListener('load', () => setTimeout(() => document.body.classList.add('loaded'), 100));
     setTimeout(() => document.body.classList.add('loaded'), 2000);
 
-    const SCROLL_THRESHOLD = 0.9;
     const els = {
       cityscape:    document.querySelector('.cityscape'),
       bioPanel:     document.getElementById('bioPanel'),
       closeBtn:     document.getElementById('closeBtn'),
       centeredText: document.querySelector('.centered-text'),
-      addressText:  document.querySelector('.address-text'),
+      addressText:  document.getElementById('addressText'),
       directorText: document.getElementById('directorText'),
-      directorLink: document.getElementById('directorLink'),
       lede:         document.querySelector('.lede'),
     };
 
@@ -389,7 +743,7 @@
       cursor.style.transform = `translate(${e.clientX - 5}px, ${e.clientY - 5}px)`;
     });
     setTimeout(() => {
-      [els.directorLink, els.centeredText].filter(Boolean).forEach(el => {
+      [els.directorText, els.centeredText].filter(Boolean).forEach(el => {
         el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
         el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
       });
@@ -411,16 +765,12 @@
       els.cityscape.style.opacity = '1';
     }, { once: true });
 
-    /* ── FIX 3: cityscape pulse ──
-       Desktop: continuous gentlePulse after 5s, pauses on hover.
-       Touch:   still by default; one pulse on tap, then stops. ── */
+    /* cityscape pulse */
     const isTouch = window.matchMedia('(hover:none) and (pointer:coarse)').matches;
-
     setTimeout(() => {
       els.cityscape.style.opacity = '1';
       if (!isTouch) els.cityscape.style.animation = 'gentlePulse 3s ease-in-out infinite';
     }, 5000);
-
     els.cityscape.addEventListener('mouseenter', () => {
       els.cityscape.style.opacity   = '1';
       els.cityscape.style.animation = 'none';
@@ -429,23 +779,18 @@
       els.cityscape.style.opacity = '1';
       if (!isTouch) els.cityscape.style.animation = 'gentlePulse 3s ease-in-out infinite';
     });
-
     let touchPulsing = false;
     els.cityscape.addEventListener('touchend', () => {
       if (touchPulsing) return;
       touchPulsing = true;
       els.cityscape.classList.add('pulsing', 'wave');
-      setTimeout(() => {
-        els.cityscape.classList.remove('pulsing', 'wave');
-        touchPulsing = false;
-      }, 3000);
+      setTimeout(() => { els.cityscape.classList.remove('pulsing', 'wave'); touchPulsing = false; }, 3000);
     }, { passive: true });
 
     /* rainbow buildings */
     const buildings    = els.cityscape.querySelectorAll('.building');
     const colors       = ['#ff6464','#ffb830','#64dc64','#32b4ff','#b464ff','#ff64b4'];
     let   rainbowInterval, restingIndex = 0;
-
     setInterval(() => {
       if (!rainbowInterval) {
         buildings.forEach((b, i) => b.style.backgroundColor = colors[(restingIndex + i) % colors.length]);
@@ -461,19 +806,29 @@
     });
     els.cityscape.addEventListener('mouseleave', () => { clearInterval(rainbowInterval); rainbowInterval = null; });
 
-    /* director scroll */
+    /* pill colour — light on cream section, white elsewhere */
+    const servicesSection = document.getElementById('services');
+    function updateDirectorTheme() {
+      const dirRect = els.directorText.getBoundingClientRect();
+      const svcRect = servicesSection.getBoundingClientRect();
+      const onLight = dirRect.bottom > svcRect.top && dirRect.top < svcRect.bottom;
+      els.directorText.classList.toggle('on-light', onLight);
+    }
+    window.addEventListener('scroll', updateDirectorTheme, { passive: true });
+    updateDirectorTheme();
+
+    /* fade pill in once hero scrolls away */
     let directorShown = false;
     window.addEventListener('scroll', () => {
-      const past = window.pageYOffset > window.innerHeight * SCROLL_THRESHOLD;
-      els.directorText.classList.toggle('scrolled', past);
-      if (past && !directorShown) {
+      if (!directorShown && window.pageYOffset > window.innerHeight * 0.9) {
         els.directorText.style.animation = 'none';
-        els.directorText.style.opacity   = '0.85';
+        els.directorText.style.opacity = '0.85';
         directorShown = true;
       }
     });
 
     /* bio panel */
+    let savedScrollY = 0;
     function openBio() {
       els.bioPanel.classList.remove('closing');
       els.bioPanel.classList.add('active');
@@ -486,10 +841,9 @@
       els.bioPanel.classList.add('closing');
       document.body.classList.remove('no-scroll');
       [els.lede, els.centeredText, els.addressText, els.directorText].forEach(el => el && el.classList.remove('hide'));
-      setTimeout(() => { els.bioPanel.classList.remove('closing'); els.cityscape.focus(); }, 400);
+      setTimeout(() => els.bioPanel.classList.remove('closing'), 400);
     }
-
-    els.directorLink.addEventListener('click', e => { e.preventDefault(); openBio(); });
+    els.directorText.addEventListener('click', openBio);
     els.closeBtn.addEventListener('click', closeBio);
     els.bioPanel.addEventListener('click', e => { if (e.target===els.bioPanel) closeBio(); });
     document.addEventListener('keydown', e => { if (e.key==='Escape' && els.bioPanel.classList.contains('active')) closeBio(); });
@@ -500,6 +854,30 @@
         else if (!e.shiftKey && document.activeElement===f[f.length-1]) { e.preventDefault(); f[0].focus(); }
       }
     });
+
+    /* scroll-triggered reveals */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.15 });
+    ['svcEyebrow','svcTitle','svcIntro','svcDivider','svcStatement'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) io.observe(el);
+    });
+
+    /* stagger service items */
+    const serviceItems = document.querySelectorAll('[data-svc]');
+    const ioItems = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = Array.from(serviceItems).indexOf(entry.target);
+          setTimeout(() => entry.target.classList.add('visible'), idx * 90);
+          ioItems.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    serviceItems.forEach(el => ioItems.observe(el));
   </script>
 </body>
 </html>
