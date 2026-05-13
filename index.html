@@ -633,6 +633,7 @@
         border-bottom: 2px solid rgba(255, 255, 255, 0.5);
         box-sizing: border-box;
         animation: cinemaReveal 1s ease 2.0s forwards;
+        transition: opacity 0.5s ease;
     }
 
     .cityscape::before {
@@ -737,6 +738,12 @@
 
     .cityscape.pulsing {
         animation: gentlePulse 3s ease-in-out 1 !important;
+    }
+
+    .cityscape.hidden-over-content {
+        opacity: 0 !important;
+        pointer-events: none;
+        transition: opacity 0.5s ease;
     }
 
     .centered-text {
@@ -1563,6 +1570,28 @@
     els.cityscape.addEventListener('mouseleave', () => {
         clearInterval(rainbowInterval);
         rainbowInterval = null;
+    });
+
+    /* hide cityscape over light/pink sections */
+    const cityscapeHideObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                els.cityscape.classList.add('hidden-over-content');
+            } else {
+                // only show if no other watched section is intersecting
+                const anyVisible = ['services', 'director'].some(id => {
+                    const el = document.getElementById(id);
+                    if (!el) return false;
+                    const r = el.getBoundingClientRect();
+                    return r.top < window.innerHeight && r.bottom > 0;
+                });
+                if (!anyVisible) els.cityscape.classList.remove('hidden-over-content');
+            }
+        });
+    }, { threshold: 0.05 });
+    ['services', 'director'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) cityscapeHideObserver.observe(el);
     });
 
     /* scroll-triggered reveals */
